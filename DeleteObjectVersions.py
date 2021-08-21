@@ -17,10 +17,10 @@ def lambda_handler(event, context):
         if threshold_dt >= obj['Versions'][i]['LastModified'].strftime('%Y-%m-%d') :
             obj_name = obj['Versions'][i]['Key']
             obj_ver = obj['Versions'][i]['VersionId']
-            obj_date = obj['Versions'][i]['LastModified']
             res = s3.delete_object(Bucket = S3Bucket, Key = obj_name, VersionId = obj_ver)
             del_file_list.append(obj_name + " " + obj_ver)
             del_counter += 1
-            del_file_str = str(del_file_list).strip('[]')
+
+    del_file_str = str(del_file_list).strip('[]')
     print(str(del_counter) + " files which were created on or before the threshold date of - " + threshold_dt + " have been deleted. Here are their names & version ids - " + del_file_str)
     return "Process completed successfully."
