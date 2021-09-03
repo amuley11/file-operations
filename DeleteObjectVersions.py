@@ -25,5 +25,5 @@ def lambda_handler(event, context):
     if del_counter > 0:
         print(str(del_counter) + " files which were created on or before the threshold date of - " + threshold_dt + " have been deleted. Here are their names & version ids - " + del_file_str)
     else:
-        print("No files were created on or before " + threshold_dt + ", hence none deleted.")
+        print("No versions were created on or before " + threshold_dt + ", hence none deleted.")
     return "Process completed successfully."
